@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us — Fenner Flips</title>
+  <meta name="description" content="Get in touch with Fenner Flips. Whether you want to sell your house or invest in real estate, we'd love to hear from you.">
+  <meta property="og:title" content="Contact Us — Fenner Flips">
+  <meta property="og:description" content="Get in touch with Fenner Flips. Sell your house or invest in real estate.">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Roboto:wght@300;400;500;700&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div id="nav"></div>
+
+<div class="page-header">
+  <h1>Contact Us</h1>
+  <p>We'd love to hear from you</p>
+</div>
+
+<section class="section">
+  <div class="section-inner">
+    <div class="grid-2 grid-2-top">
+      <!-- Form -->
+      <div class="form-header">
+        <span class="section-label">Send a Message</span>
+        <h2>Get in Touch</h2>
+        <p>Fill out the form below and we'll get back to you within 24 hours.</p>
+        <form class="form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <div class="form-group">
+            <label for="c-name">Name</label>
+            <input type="text" id="c-name" name="name" required placeholder="Your name">
+          </div>
+          <div class="form-group">
+            <label for="c-phone">Phone</label>
+            <input type="tel" id="c-phone" name="phone" placeholder="(555) 555-1234">
+          </div>
+          <div class="form-group">
+            <label for="c-email">Email</label>
+            <input type="email" id="c-email" name="email" required placeholder="you@email.com">
+          </div>
+          <div class="form-group">
+            <label for="c-interest">I'm Interested In</label>
+            <select id="c-interest" name="interest">
+              <option value="">Select one...</option>
+              <option value="selling">Selling my house</option>
+              <option value="investing">Investing / Private lending</option>
+              <option value="partnership">Partnership opportunity</option>
+              <option value="other">Something else</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="c-message">Message</label>
+            <textarea id="c-message" name="message" required placeholder="How can we help you?"></textarea>
+          </div>
+          <input type="hidden" name="_subject" value="New Contact — Fenner Flips Website">
+          <button type="submit" class="btn btn-gold btn-full">Send Message</button>
+        </form>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="pt-48">
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="contact-icon">&#128222;</div>
+            <div>
+              <h4>Phone</h4>
+              <p><a href="tel:+16153077977">(615) 307-7977</a></p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">&#128205;</div>
+            <div>
+              <h4>Service Area</h4>
+              <p>We buy houses throughout the greater metro area and surrounding counties. If you're unsure whether your property is in our service area, just ask — we'll let you know.</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">&#128247;</div>
+            <div>
+              <h4>Follow Us</h4>
+              <p><a href="https://instagram.com/fennerflips" target="_blank" rel="noopener">@fennerflips on Instagram</a></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card card-dark mt-32">
+          <h3>Quick Response Guarantee</h3>
+          <p>We respond to every inquiry within 24 hours. If you need to sell fast, call us directly — we can often make an offer the same day.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="footer"></div>
+
+<script src="js/components.js"></script>
+<script>
+  document.getElementById('nav').innerHTML = getNav('contact');
+  document.getElementById('footer').innerHTML = getFooter();
+</script>
+</body>
+</html>

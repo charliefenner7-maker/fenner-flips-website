@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Projects — Fenner Flips Portfolio</title>
+  <meta name="description" content="Browse our portfolio of house flipping projects. See before and after transformations by Fenner Flips.">
+  <meta property="og:title" content="Our Projects — Fenner Flips Portfolio">
+  <meta property="og:description" content="Browse our portfolio of house flipping projects. Before and after transformations.">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Roboto:wght@300;400;500;700&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div id="nav"></div>
+
+<div class="page-header">
+  <h1>Our Projects</h1>
+  <p>See the transformations that create value for everyone</p>
+</div>
+
+<!-- Portfolio Grid -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-label">Portfolio</span>
+      <h2>Recent & Active Projects</h2>
+      <p>Every project starts with a vision and ends with a beautiful home. Here's a look at what we've been working on.</p>
+    </div>
+
+    <div class="grid-2">
+      <!-- Project 1 -->
+      <div class="project-card">
+        <div class="project-images">
+          <div class="project-img">
+            <span class="project-img-label">Before</span>
+            <!-- Replace: <img src="images/project1-before.jpg" alt="Before renovation"> -->
+            Before Photo
+          </div>
+          <div class="project-img">
+            <span class="project-img-label">After</span>
+            <!-- Replace: <img src="images/project1-after.jpg" alt="After renovation"> -->
+            After Photo
+          </div>
+        </div>
+        <div class="project-info">
+          <h3>Property Renovation #1</h3>
+          <p>Complete interior and exterior renovation including new kitchen, bathrooms, flooring, and landscaping.</p>
+          <div class="project-tags">
+            <span class="project-tag">Full Renovation</span>
+            <span class="project-tag">3 Bed / 2 Bath</span>
+            <span class="project-tag">Active</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="project-card">
+        <div class="project-images">
+          <div class="project-img">
+            <span class="project-img-label">Before</span>
+            Before Photo
+          </div>
+          <div class="project-img">
+            <span class="project-img-label">After</span>
+            After Photo
+          </div>
+        </div>
+        <div class="project-info">
+          <h3>Property Renovation #2</h3>
+          <p>Kitchen remodel, new HVAC system, updated electrical, fresh paint throughout, and curb appeal overhaul.</p>
+          <div class="project-tags">
+            <span class="project-tag">Major Rehab</span>
+            <span class="project-tag">4 Bed / 2 Bath</span>
+            <span class="project-tag">Active</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="project-card">
+        <div class="project-images">
+          <div class="project-img">
+            <span class="project-img-label">Before</span>
+            Before Photo
+          </div>
+          <div class="project-img">
+            <span class="project-img-label">After</span>
+            After Photo
+          </div>
+        </div>
+        <div class="project-info">
+          <h3>Property Renovation #3</h3>
+          <p>Structural repairs, new roof, complete bathroom and kitchen renovation with modern finishes.</p>
+          <div class="project-tags">
+            <span class="project-tag">Structural + Cosmetic</span>
+            <span class="project-tag">3 Bed / 1 Bath</span>
+            <span class="project-tag">Active</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="project-card">
+        <div class="project-images">
+          <div class="project-img">
+            <span class="project-img-label">Before</span>
+            Before Photo
+          </div>
+          <div class="project-img">
+            <span class="project-img-label">After</span>
+            After Photo
+          </div>
+        </div>
+        <div class="project-info">
+          <h3>Property Renovation #4</h3>
+          <p>Cosmetic refresh with updated kitchen, new flooring, modernized bathrooms, and fresh exterior paint.</p>
+          <div class="project-tags">
+            <span class="project-tag">Cosmetic Refresh</span>
+            <span class="project-tag">3 Bed / 2 Bath</span>
+            <span class="project-tag">Complete</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- To add photos: put images in images/ folder, then replace placeholder text with <img src="images/your-photo.jpg" alt="Description"> -->
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner">
+  <h2>Have a Property to Sell?</h2>
+  <p>We're always looking for our next project. Get an offer today.</p>
+  <div class="btn-group">
+    <a href="sell.html" class="btn btn-gold">Sell Your House</a>
+    <a href="investors.html" class="btn btn-outline">Fund a Project</a>
+  </div>
+</section>
+
+<div id="footer"></div>
+
+<script src="js/components.js"></script>
+<script>
+  document.getElementById('nav').innerHTML = getNav('portfolio');
+  document.getElementById('footer').innerHTML = getFooter();
+</script>
+</body>
+</html>
