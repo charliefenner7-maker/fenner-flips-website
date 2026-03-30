@@ -740,6 +740,15 @@ a { color: var(--black); text-decoration: none; transition: color var(--transiti
 
   .page-header h1 { font-size: 2rem; }
   .page-header { padding: 48px 24px; }
+
+  /* Hide large logo on mobile — it overlaps heading */
+  .section > img[alt="Fenner Flips"] { display: none !important; }
+
+  /* Stack before/after photos vertically on mobile */
+  .project-images { grid-template-columns: 1fr 1fr; }
+
+  /* Wrap project info row on small screens */
+  .project-info { flex-wrap: wrap; }
 }
 
 @media (max-width: 375px) {
