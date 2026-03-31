@@ -46,7 +46,6 @@ function getFooter() {
           <ul class="footer-links">
             <li><a href="mailto:info@fennerflips.com">info@fennerflips.com</a></li>
             <li><a href="tel:+16153077977">(615) 307-7977</a></li>
-            <li>Nashville, TN</li>
             <li><a href="https://instagram.com/fennerflips" target="_blank" rel="noopener">Instagram</a></li>
             <li><a href="https://linkedin.com/in/charlie-fenner-847973b" target="_blank" rel="noopener">LinkedIn</a></li>
           </ul>
