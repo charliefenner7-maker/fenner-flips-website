@@ -8,20 +8,89 @@
   <meta property="og:title" content="Fenner Flips — Nashville Real Estate Investments">
   <meta property="og:description" content="Nashville real estate investment. Sell your home fast or invest in profitable real estate flips.">
   <meta property="og:type" content="website">
+  <meta property="og:image" content="https://www.fennerflips.com/images/before-after-hero.jpg">
+  <meta property="og:url" content="https://www.fennerflips.com/">
+  <meta property="og:site_name" content="Fenner Flips">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://www.fennerflips.com/">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Roboto:wght@300;400;500;700&display=swap">
   <link rel="stylesheet" href="css/styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://www.fennerflips.com/#organization",
+        "name": "Fenner Flips",
+        "url": "https://www.fennerflips.com",
+        "logo": "https://www.fennerflips.com/images/logo.png",
+        "telephone": "+1-615-307-7977",
+        "email": "info@fennerflips.com",
+        "sameAs": [
+          "https://instagram.com/fennerflips",
+          "https://linkedin.com/in/charlie-fenner-847973b"
+        ],
+        "founder": {
+          "@type": "Person",
+          "name": "Charlie Fenner"
+        },
+        "description": "Nashville-based real estate investment company that buys, renovates, and sells homes. Offers private lending opportunities backed by real property."
+      },
+      {
+        "@type": "LocalBusiness",
+        "@id": "https://www.fennerflips.com/#localbusiness",
+        "name": "Fenner Flips",
+        "image": "https://www.fennerflips.com/images/before-after-hero.jpg",
+        "priceRange": "$$",
+        "areaServed": {
+          "@type": "City",
+          "name": "Nashville",
+          "addressRegion": "TN",
+          "addressCountry": "US"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Nashville",
+          "addressRegion": "TN",
+          "addressCountry": "US"
+        },
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+          "opens": "08:00",
+          "closes": "18:00"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.fennerflips.com/#website",
+        "name": "Fenner Flips",
+        "url": "https://www.fennerflips.com",
+        "publisher": { "@id": "https://www.fennerflips.com/#organization" }
+      }
+    ]
+  }
+  </script>
+  <!-- Google Analytics — uncomment and replace GA_MEASUREMENT_ID with your actual ID
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','GA_MEASUREMENT_ID');</script>
+  -->
 </head>
 <body>
 
 <div id="nav"></div>
 
+<main>
+
 <!-- Before & After Showcase (Hero) -->
 <section class="section" style="position:relative;">
   <div class="section-inner" style="max-width:900px;">
     <img src="images/logo.png" alt="Fenner Flips" style="display:block; margin:0 auto 30px; height:360px; width:auto;">
+    <h1 class="sr-only">Fenner Flips — Nashville Real Estate Investments</h1>
     <div class="section-header">
       <span class="section-label">The Transformation</span>
       <div class="section-divider"></div>
@@ -70,7 +139,7 @@
   <div class="hero-bg" style="background-image:url('images/hero-bg.jpg')"></div>
   <div class="hero-inner">
     <div class="hero-divider"></div>
-    <h1>Nashville Real Estate <span>Investments</span></h1>
+    <h2>Nashville Real Estate <span>Investments</span></h2>
     <p>Fenner Flips revitalizes residential properties in Nashville, creating value for homeowners, investors, and communities.</p>
     <div class="btn-group">
       <a href="sell.html" class="btn btn-gold">Sell Your Home</a>
@@ -177,6 +246,8 @@
     <a href="contact.html" class="btn btn-outline">Contact Us</a>
   </div>
 </section>
+
+</main>
 
 <div id="footer"></div>
 
