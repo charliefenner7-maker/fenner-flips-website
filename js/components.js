@@ -13,6 +13,7 @@ function getNav(activePage) {
         <li><a href="sell.html" class="${activePage === 'sell' ? 'active' : ''}">Sell Your House</a></li>
         <li><a href="investors.html" class="${activePage === 'investors' ? 'active' : ''}">Investors</a></li>
         <li><a href="portfolio.html" class="${activePage === 'portfolio' ? 'active' : ''}">Portfolio</a></li>
+        <li><a href="blog.html" class="${activePage === 'blog' ? 'active' : ''}">Blog</a></li>
         <li><a href="contact.html" class="${activePage === 'contact' ? 'active' : ''}">Contact</a></li>
       </ul>
       <button class="nav-toggle" onclick="toggleNav()" aria-label="Toggle menu">
@@ -38,6 +39,7 @@ function getFooter() {
             <li><a href="sell.html">Sell Your House</a></li>
             <li><a href="investors.html">Invest With Us</a></li>
             <li><a href="portfolio.html">Our Projects</a></li>
+            <li><a href="blog.html">Blog</a></li>
             <li><a href="contact.html">Contact Us</a></li>
           </ul>
         </div>
