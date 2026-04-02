@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fenner Flips — Investor Update</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
+<style>
+  :root {
+    --black: #111111;
+    --charcoal: #1a1a1a;
+    --dark: #222222;
+    --dark-accent: #2a2a2a;
+    --gold: #8B6914;
+    --gold-light: #B8941F;
+    --gold-pale: #D4B84A;
+    --gold-muted: rgba(139, 105, 20, 0.15);
+    --white: #FFFFFF;
+    --off-white: #FAFAF8;
+    --cream: #F5F3EE;
+    --gray-200: #E5E7EB;
+    --gray-300: #D1D5DB;
+    --gray-500: #6B7280;
+    --gray-600: #4B5563;
+    --gray-800: #1F2937;
+    --red: #C0392B;
+    --green: #2E7D4F;
+    --radius: 4px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Roboto', system-ui, -apple-system, sans-serif;
+    color: var(--gray-800);
+    line-height: 1.7;
+    background: var(--off-white);
+    font-weight: 300;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 24px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  /* Editable fields */
+  [contenteditable] {
+    outline: none;
+    border-bottom: 1px dashed transparent;
+    transition: border-color 0.3s, background 0.3s;
+    border-radius: 2px;
+    padding: 1px 4px;
+    margin: -1px -4px;
+  }
+  [contenteditable]:hover {
+    border-bottom-color: var(--gold-pale);
+    background: var(--gold-muted);
+  }
+  [contenteditable]:focus {
+    border-bottom-color: var(--gold);
+    background: var(--gold-muted);
+  }
+
+  /* Header */
+  .header {
+    background: var(--black);
+    color: var(--white);
+    padding: 40px;
+    border-radius: var(--radius);
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .header-logo img {
+    height: 175px;
+    width: auto;
+  }
+  .header-text h1 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+  .header-text .subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gold-light);
+    font-weight: 600;
+  }
+  .header-right {
+    text-align: right;
+  }
+  .header-right .date-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gray-500);
+    margin-bottom: 4px;
+  }
+  .header-right .date-value {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--gold-pale);
+  }
+  .header-right [contenteditable] { color: var(--gold-pale); }
+
+  /* Investor info bar */
+  .investor-bar {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-left: 4px solid var(--gold);
+    border-radius: var(--radius);
+    padding: 20px 28px;
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .investor-bar .investor-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    color: var(--gray-500);
+  }
+  .investor-bar .investor-name span {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--black);
+    display: block;
+    margin-top: 2px;
+  }
+  .investor-bar .confidential {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--gray-500);
+    opacity: 0.6;
+  }
+
+  /* Controls */
+  .controls {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+
+  /* Sections */
+  .section {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 28px;
+    margin-bottom: 24px;
+  }
+  .section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  /* Label style (shared) */
+  .ui-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gray-500);
+    margin-bottom: 4px;
+  }
+
+  /* Investment Summary */
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .metric-box {
+    text-align: center;
+    padding: 20px 12px;
+    background: var(--off-white);
+    border-radius: var(--radius);
+    border: 1px solid var(--gray-200);
+  }
+  .metric-box .label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gray-500);
+    margin-bottom: 6px;
+  }
+  .metric-box .value {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--black);
+  }
+
+  /* Property Cards */
+  .property-card {
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 20px;
+    page-break-inside: avoid;
+    position: relative;
+  }
+  .property-header {
+    background: var(--charcoal);
+    color: var(--white);
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .property-header [contenteditable] { color: var(--white); }
+  .property-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .property-status {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    padding: 4px 14px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+  }
+  .status-rehab { background: var(--gold); color: var(--white); }
+  .status-listed { background: var(--green); color: var(--white); }
+  .status-sold { background: var(--dark-accent); color: var(--gold-pale); }
+  .status-acquisition { background: #6C5B7B; color: var(--white); }
+
+  .property-body { padding: 24px; }
+
+  .property-details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .detail-item .detail-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gray-500);
+    margin-bottom: 2px;
+  }
+  .detail-item .detail-value {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--black);
+  }
+
+  .property-notes { margin-bottom: 20px; }
+  .property-notes .notes-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gray-500);
+    margin-bottom: 6px;
+    display: block;
+  }
+  .property-notes p {
+    font-size: 14px;
+    color: var(--gray-800);
+    line-height: 1.7;
+  }
+
+  /* Photo Drop Zone */
+  .photo-zone {
+    border: 2px dashed var(--gray-300);
+    border-radius: var(--radius);
+    padding: 20px;
+    text-align: center;
+    min-height: 120px;
+    transition: border-color 0.3s, background 0.3s;
+    cursor: pointer;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+  }
+  .photo-zone.drag-over {
+    border-color: var(--gold);
+    background: var(--gold-muted);
+  }
+  .photo-zone .placeholder {
+    color: var(--gray-500);
+    font-size: 14px;
+    font-style: italic;
+    pointer-events: none;
+  }
+  .photo-zone.has-photos .placeholder { display: none; }
+
+  .photo-wrapper { position: relative; display: inline-block; }
+  .photo-wrapper img {
+    max-width: 200px;
+    max-height: 160px;
+    border-radius: var(--radius);
+    object-fit: cover;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  }
+  .photo-wrapper .photo-caption {
+    font-size: 11px;
+    text-align: center;
+    color: var(--gray-500);
+    margin-top: 4px;
+    display: block;
+  }
+  .photo-remove {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    width: 20px;
+    height: 20px;
+    background: var(--red);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+
+  /* Status dropdown */
+  .status-select {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+  }
+  .status-select option { color: var(--black); background: var(--white); }
+
+  /* Property dropdown */
+  .property-select {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    padding: 4px 10px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-weight: 600;
+    flex: 1;
+    max-width: 400px;
+  }
+  .property-select option { color: var(--black); background: var(--white); }
+
+  /* Lender dropdown */
+  #lenderSelect {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 4px 8px;
+    border: 1px solid var(--gray-300);
+    border-radius: var(--radius);
+    color: var(--black);
+    cursor: pointer;
+    margin-top: 4px;
+    display: block;
+  }
+
+  /* Buttons */
+  .btn {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    transition: opacity 0.3s;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn-gold { background: var(--gold); color: var(--white); }
+  .btn-dark { background: var(--black); color: var(--white); }
+  .btn-red { background: var(--red); color: var(--white); }
+  .btn-small { font-size: 10px; padding: 6px 14px; }
+
+  .remove-card-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 10;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 24px;
+    color: var(--gray-500);
+    font-size: 12px;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 0.02em;
+  }
+  .footer .divider {
+    width: 40px;
+    height: 2px;
+    background: var(--gold);
+    margin: 0 auto 12px;
+  }
+
+  /* Print Styles */
+  @media print {
+    body { padding: 0; max-width: 100%; background: white; }
+    .controls, .btn, .photo-remove, .remove-card-btn, .status-select, .property-select, #lenderSelect { display: none !important; }
+    #lenderNamePrint { display: inline-block !important; }
+    .property-name-print { display: inline-block !important; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 600; color: var(--white); }
+    .property-status-print { display: inline-block !important; }
+    .header { border-radius: 0; }
+    .section { box-shadow: none; }
+    .photo-zone { border-style: solid; border-color: #eee; }
+    .photo-zone .placeholder { display: none; }
+    .property-card { page-break-inside: avoid; }
+    [contenteditable] { border-bottom: none !important; }
+    [contenteditable]:hover, [contenteditable]:focus { background: none !important; }
+  }
+  .property-status-print { display: none; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-left">
+    <div class="header-logo">
+      <img src="images/city-rei.png" alt="Fenner Flips">
+    </div>
+    <div class="header-text">
+      <h1>Investor Update</h1>
+      <div class="subtitle">Monthly Property Report</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="date-label">Report Date</div>
+    <div class="date-value" contenteditable="true">March 2026</div>
+  </div>
+</div>
+
+<!-- INVESTOR INFO -->
+<div class="investor-bar">
+  <div class="investor-name">
+    Prepared for
+    <select id="lenderSelect" onchange="onLenderChange()">
+      <option value="">Select Lender...</option>
+    </select>
+    <span id="lenderNamePrint" style="display:none; font-size:18px; font-weight:600; color:var(--black);"></span>
+  </div>
+  <div class="confidential">Confidential</div>
+</div>
+
+<!-- CONTROLS -->
+<div class="controls">
+  <button class="btn btn-gold" onclick="addProperty()">+ Add Property</button>
+  <button class="btn btn-dark" onclick="window.print()">Export to PDF</button>
+</div>
+
+<!-- INVESTMENT SUMMARY -->
+<div class="section">
+  <div class="section-title">Your Investment</div>
+  <div class="summary-grid">
+    <div class="metric-box">
+      <div class="label">Amount Invested</div>
+      <div class="value" id="investAmount">—</div>
+    </div>
+    <div class="metric-box">
+      <div class="label">Interest Rate</div>
+      <div class="value" id="investRate">—</div>
+    </div>
+    <div class="metric-box">
+      <div class="label">Interest Accrued</div>
+      <div class="value" id="investInterest">—</div>
+    </div>
+  </div>
+  <p id="investNote" style="margin-top: 16px; font-size: 13px; color: var(--gray-500); font-style: italic;">Select a lender and property to auto-fill investment details.</p>
+</div>
+
+<!-- PROPERTY CARDS -->
+<div id="properties">
+
+  <div class="property-card" data-property>
+    <button class="btn btn-red btn-small remove-card-btn" onclick="removeProperty(this)">&#10005;</button>
+    <div class="property-header">
+      <select class="property-select" onchange="fillPropertyData(this)">
+        <option value="">Select Property...</option>
+      </select>
+      <span class="property-name-print" style="display:none;"></span>
+      <select class="status-select" onchange="updateStatusColor(this)">
+        <option value="rehab">In Rehab</option>
+        <option value="acquisition">Acquisition</option>
+        <option value="listed">Listed</option>
+        <option value="sold">Sold</option>
+      </select>
+      <span class="property-status property-status-print status-rehab">In Rehab</span>
+    </div>
+    <div class="property-body">
+      <div class="property-details">
+        <div class="detail-item">
+          <div class="detail-label">Purchase Price</div>
+          <div class="detail-value pp-value">$0</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">Rehab Budget</div>
+          <div class="detail-value reno-value">$0</div>
+        </div>
+
+        <div class="detail-item">
+          <div class="detail-label">Est. Completion</div>
+          <div class="detail-value" contenteditable="true">Apr 2026</div>
+        </div>
+      </div>
+      <div class="property-notes">
+        <span class="notes-label">This Month's Progress</span>
+        <p contenteditable="true">Kitchen renovation completed — new cabinets, quartz countertops, and appliances installed. Bathroom tile work 80% done. Exterior paint scheduled for next week. On track for April listing.</p>
+      </div>
+      <div class="property-notes">
+        <span class="notes-label">Next Month's Plan</span>
+        <p contenteditable="true">Complete bathrooms, install flooring in living areas, landscaping, final punch list, and professional photos for listing.</p>
+      </div>
+      <div class="photo-zone" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)" onclick="triggerFileInput(this, event)">
+        <span class="placeholder">Drag & drop progress photos here, or click to browse</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- LOOKING AHEAD -->
+<div class="section">
+  <div class="section-title">Looking Ahead</div>
+  <p contenteditable="true" style="margin-bottom: 12px;">We anticipate completing renovation and listing this property within the next 30-60 days. The Nashville market continues to show strong demand in our target price range.</p>
+  <p contenteditable="true">Thank you for your continued trust and investment. Please don't hesitate to reach out with any questions.</p>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="divider"></div>
+  <p contenteditable="true">Charlie Fenner — Fenner Flips — fennerflips.com</p>
+  <p style="margin-top: 4px; opacity: 0.6;">This report is confidential and intended solely for the named recipient.</p>
+</div>
+
+<!-- Property card template -->
+<template id="property-template">
+  <div class="property-card" data-property>
+    <button class="btn btn-red btn-small remove-card-btn" onclick="removeProperty(this)">&#10005;</button>
+    <div class="property-header">
+      <select class="property-select" onchange="fillPropertyData(this)">
+        <option value="">Select Property...</option>
+      </select>
+      <span class="property-name-print" style="display:none;"></span>
+      <select class="status-select" onchange="updateStatusColor(this)">
+        <option value="rehab">In Rehab</option>
+        <option value="acquisition">Acquisition</option>
+        <option value="listed">Listed</option>
+        <option value="sold">Sold</option>
+      </select>
+      <span class="property-status property-status-print status-rehab">In Rehab</span>
+    </div>
+    <div class="property-body">
+      <div class="property-details">
+        <div class="detail-item">
+          <div class="detail-label">Purchase Price</div>
+          <div class="detail-value pp-value">$0</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">Rehab Budget</div>
+          <div class="detail-value reno-value">$0</div>
+        </div>
+
+
+        <div class="detail-item">
+          <div class="detail-label">Est. Completion</div>
+          <div class="detail-value" contenteditable="true">TBD</div>
+        </div>
+      </div>
+      <div class="property-notes">
+        <span class="notes-label">This Month's Progress</span>
+        <p contenteditable="true">[Click to edit]</p>
+      </div>
+      <div class="property-notes">
+        <span class="notes-label">Next Month's Plan</span>
+        <p contenteditable="true">[Click to edit]</p>
+      </div>
+      <div class="photo-zone" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)" onclick="triggerFileInput(this, event)">
+        <span class="placeholder">Drag & drop progress photos here, or click to browse</span>
+      </div>
+    </div>
+  </div>
+</template>
+
+<input type="file" id="fileInput" accept="image/*,.heic,.heif" multiple style="display:none" onchange="handleFileSelect(event)">
+
+<script>
+  const PROPERTIES = [
+    { address: '215 Rolling Fork Ct', pp: 850000, reno: 150000 },
+    { address: '215 Cherokee Rd', pp: 750000, reno: 380000 },
+    { address: '912 Wilson Blvd S', pp: 875000, reno: 570000 },
+    { address: '4111 Legend Hall Dr', pp: 1000000, reno: 380000 },
+    { address: '5314 Elkins Ave', pp: 699000, reno: 450000 },
+    { address: '3513 Rainbow Pl', pp: 825000, reno: 950000 },
+    { address: '105 Vaughns Gap Rd', pp: 1275000, reno: 548000 },
+    { address: '303 Lauderdale Rd', pp: 795000, reno: 405000 },
+  ];
+
+  const LOANS = [
+    { lender: 'Gabe & Polly Lamberth', property: '3513 Rainbow Pl', principal: 50000, rate: 12 },
+    { lender: 'Gabe & Polly Lamberth', property: '303 Lauderdale Rd', principal: 20000, rate: 12 },
+    { lender: 'Kate Jamieson', property: '105 Vaughns Gap Rd', principal: 20000, rate: 18 },
+    { lender: 'Kate Jamieson', property: '5314 Elkins Ave', principal: 20000, rate: 18 },
+    { lender: 'Kate Jamieson', property: '912 Wilson Blvd S', principal: 20000, rate: 18 },
+    { lender: 'Kate Jamieson', property: '4111 Legend Hall Dr', principal: 20000, rate: 18 },
+    { lender: 'Kate Jamieson', property: '215 Cherokee Rd', principal: 20000, rate: 18 },
+    { lender: 'Tim Moore', property: '303 Lauderdale Rd', principal: 70000, rate: 15 },
+    { lender: 'Pierce Schubert', property: '303 Lauderdale Rd', principal: 170000, rate: 12 },
+    { lender: 'Tim Moore', property: '105 Vaughns Gap Rd', principal: 200000, rate: 15 },
+    { lender: 'Cacky Tate', property: '3513 Rainbow Pl', principal: 50000, rate: 12 },
+    { lender: 'Joseph Henry', property: '3513 Rainbow Pl', principal: 175000, rate: 20 },
+    { lender: 'Sean & Meridith Peratikos', property: '3513 Rainbow Pl', principal: 175000, rate: 20 },
+    { lender: 'Sharon Conour', property: '912 Wilson Blvd S', principal: 231750, rate: 34 },
+    { lender: 'Matt & Cass Noggle', property: '5314 Elkins Ave', principal: 100000, rate: 15 },
+    { lender: 'Matt & Cass Noggle', property: '4111 Legend Hall Dr', principal: 120000, rate: 15 },
+    { lender: 'Sean & Meridith Peratikos', property: '215 Rolling Fork Ct', principal: 150000, rate: 15 },
+    { lender: 'Marci & CJ Tasche', property: '215 Cherokee Rd', principal: 50000, rate: 12 },
+    { lender: 'Kate Jamieson', property: '215 Cherokee Rd', principal: 160000, rate: 15 },
+  ];
+
+  const LENDERS = [...new Set(LOANS.map(l => l.lender))].sort();
+
+  function fmt(n) {
+    return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+  }
+
+  function populateLenderDropdown() {
+    const select = document.getElementById('lenderSelect');
+    LENDERS.forEach(name => {
+      const opt = document.createElement('option');
+      opt.value = name;
+      opt.textContent = name;
+      select.appendChild(opt);
+    });
+  }
+
+  function onLenderChange() {
+    const lender = document.getElementById('lenderSelect').value;
+    document.getElementById('lenderNamePrint').textContent = lender;
+
+    // Filter properties for this lender and update property dropdowns
+    populatePropertyDropdowns();
+
+    // Reset investment display
+    document.getElementById('investAmount').textContent = '—';
+    document.getElementById('investRate').textContent = '—';
+    document.getElementById('investInterest').textContent = '—';
+    document.getElementById('investNote').textContent = lender
+      ? 'Select a property below to see loan details.'
+      : 'Select a lender and property to auto-fill investment details.';
+  }
+
+  function getPropertiesForLender(lender) {
+    if (!lender) return PROPERTIES;
+    const lenderProps = LOANS.filter(l => l.lender === lender).map(l => l.property);
+    return PROPERTIES.filter(p => lenderProps.includes(p.address));
+  }
+
+  function populatePropertyDropdowns() {
+    const lender = document.getElementById('lenderSelect').value;
+    const props = getPropertiesForLender(lender);
+    document.querySelectorAll('.property-select').forEach(select => {
+      const current = select.value;
+      select.innerHTML = '<option value="">Select Property...</option>';
+      props.forEach(p => {
+        const opt = document.createElement('option');
+        opt.value = p.address;
+        opt.textContent = p.address;
+        select.appendChild(opt);
+      });
+      if (props.find(p => p.address === current)) {
+        select.value = current;
+      }
+    });
+  }
+
+  function fillPropertyData(select) {
+    const card = select.closest('.property-card');
+    const prop = PROPERTIES.find(p => p.address === select.value);
+    const printName = card.querySelector('.property-name-print');
+    if (!prop) {
+      card.querySelector('.pp-value').textContent = '$0';
+      card.querySelector('.reno-value').textContent = '$0';
+      printName.textContent = '';
+      updateInvestment();
+      return;
+    }
+    card.querySelector('.pp-value').textContent = fmt(prop.pp);
+    card.querySelector('.reno-value').textContent = fmt(prop.reno);
+    printName.textContent = prop.address;
+    updateInvestment();
+  }
+
+  function updateInvestment() {
+    const lender = document.getElementById('lenderSelect').value;
+    const selectedProperties = Array.from(document.querySelectorAll('.property-select'))
+      .map(s => s.value).filter(Boolean);
+
+    if (!lender || selectedProperties.length === 0) {
+      document.getElementById('investAmount').textContent = '—';
+      document.getElementById('investRate').textContent = '—';
+      document.getElementById('investInterest').textContent = '—';
+      return;
+    }
+
+    const matchingLoans = LOANS.filter(l => l.lender === lender && selectedProperties.includes(l.property));
+    if (matchingLoans.length === 0) {
+      document.getElementById('investAmount').textContent = '—';
+      document.getElementById('investRate').textContent = '—';
+      document.getElementById('investInterest').textContent = '—';
+      return;
+    }
+
+    const totalPrincipal = matchingLoans.reduce((sum, l) => sum + l.principal, 0);
+    const totalInterest = matchingLoans.reduce((sum, l) => sum + (l.principal * l.rate / 100), 0);
+    const weightedRate = totalPrincipal > 0 ? (totalInterest / totalPrincipal * 100) : 0;
+
+    document.getElementById('investAmount').textContent = fmt(totalPrincipal);
+    document.getElementById('investRate').textContent = weightedRate % 1 === 0
+      ? weightedRate + '%' : weightedRate.toFixed(1) + '%';
+    document.getElementById('investInterest').textContent = fmt(totalInterest);
+    document.getElementById('investNote').textContent = matchingLoans.length > 1
+      ? 'Totals across ' + matchingLoans.length + ' loans. Rate is weighted average.'
+      : '';
+  }
+
+  const _origAddProperty = function() {
+    const template = document.getElementById('property-template');
+    const clone = template.content.cloneNode(true);
+    document.getElementById('properties').appendChild(clone);
+    populatePropertyDropdowns();
+  };
+
+  let activePhotoZone = null;
+
+  function handleDragOver(e) {
+    e.preventDefault();
+    e.currentTarget.classList.add('drag-over');
+  }
+
+  function handleDragLeave(e) {
+    e.currentTarget.classList.remove('drag-over');
+  }
+
+  function handleDrop(e) {
+    e.preventDefault();
+    e.currentTarget.classList.remove('drag-over');
+    const files = e.dataTransfer.files;
+    if (files.length > 0) {
+      processFiles(files, e.currentTarget);
+    }
+  }
+
+  function triggerFileInput(zone, e) {
+    if (e.target.closest('.photo-wrapper') || e.target.closest('.photo-remove')) return;
+    activePhotoZone = zone;
+    document.getElementById('fileInput').click();
+  }
+
+  function handleFileSelect(e) {
+    if (activePhotoZone && e.target.files.length > 0) {
+      processFiles(e.target.files, activePhotoZone);
+    }
+    e.target.value = '';
+  }
+
+  function isHeic(file) {
+    if (file.type && (file.type === 'image/heic' || file.type === 'image/heif')) return true;
+    const name = file.name.toLowerCase();
+    return name.endsWith('.heic') || name.endsWith('.heif');
+  }
+
+  function processFiles(files, zone) {
+    Array.from(files).forEach(file => {
+      const isImage = file.type.startsWith('image/') || isHeic(file);
+      if (!isImage) return;
+
+      if (isHeic(file)) {
+        heic2any({ blob: file, toType: 'image/jpeg', quality: 0.85 }).then(blob => {
+          const converted = Array.isArray(blob) ? blob[0] : blob;
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            processImageData(e.target.result, file.name.replace(/\.heic$/i, '.jpg').replace(/\.heif$/i, '.jpg'), zone);
+          };
+          reader.readAsDataURL(converted);
+        }).catch(err => {
+          console.error('HEIC conversion failed:', err);
+          alert('Could not convert HEIC file: ' + file.name + '. Try converting to JPG first.');
+        });
+      } else {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          processImageData(e.target.result, file.name, zone);
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  }
+
+  function processImageData(dataUrl, name, zone) {
+    const img = new Image();
+    img.onload = function() {
+      const MAX_DIM = 1200;
+      if (img.width <= MAX_DIM && img.height <= MAX_DIM) {
+        addPhotoToZone(dataUrl, name, zone);
+        return;
+      }
+      let w = img.width, h = img.height;
+      if (w > h) { h = h * MAX_DIM / w; w = MAX_DIM; }
+      else { w = w * MAX_DIM / h; h = MAX_DIM; }
+      const canvas = document.createElement('canvas');
+      canvas.width = w;
+      canvas.height = h;
+      canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+      addPhotoToZone(canvas.toDataURL('image/jpeg', 0.85), name, zone);
+    };
+    img.src = dataUrl;
+  }
+
+  function addPhotoToZone(src, name, zone) {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'photo-wrapper';
+
+    const removeBtn = document.createElement('button');
+    removeBtn.className = 'photo-remove';
+    removeBtn.textContent = '\u2715';
+    removeBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const parentZone = wrapper.closest('.photo-zone');
+      wrapper.remove();
+      checkPlaceholder(parentZone);
+    });
+
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = name;
+
+    const caption = document.createElement('span');
+    caption.className = 'photo-caption';
+    caption.contentEditable = 'true';
+    caption.textContent = name.replace(/\.[^.]+$/, '');
+
+    wrapper.appendChild(removeBtn);
+    wrapper.appendChild(img);
+    wrapper.appendChild(caption);
+    zone.appendChild(wrapper);
+    zone.classList.add('has-photos');
+  }
+
+  function checkPlaceholder(zone) {
+    if (!zone) return;
+    if (zone.querySelectorAll('.photo-wrapper').length === 0) {
+      zone.classList.remove('has-photos');
+    }
+  }
+
+  function addProperty() {
+    _origAddProperty();
+  }
+
+  function removeProperty(btn) {
+    if (document.querySelectorAll('[data-property]').length <= 1) {
+      alert('You need at least one property card.');
+      return;
+    }
+    btn.closest('[data-property]').remove();
+  }
+
+  function updateStatusColor(select) {
+    const card = select.closest('.property-card');
+    const printBadge = card.querySelector('.property-status-print');
+    const val = select.value;
+    const labels = { rehab: 'In Rehab', acquisition: 'Acquisition', listed: 'Listed', sold: 'Sold' };
+    const classes = { rehab: 'status-rehab', acquisition: 'status-acquisition', listed: 'status-listed', sold: 'status-sold' };
+    printBadge.textContent = labels[val];
+    printBadge.className = 'property-status property-status-print ' + classes[val];
+  }
+
+  populateLenderDropdown();
+  populatePropertyDropdowns();
+</script>
+
+</body>
+</html>
