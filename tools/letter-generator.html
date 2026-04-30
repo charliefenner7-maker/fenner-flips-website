@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <title>Outreach Letter Generator — Fenner Flips Internal Tool</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400;500;700&display=swap">
+<style>
+  :root {
+    --black: #111111;
+    --charcoal: #1a1a1a;
+    --gold: #8B6914;
+    --gold-light: #B8941F;
+    --gold-pale: #D4B84A;
+    --gold-muted: rgba(139, 105, 20, 0.15);
+    --white: #FFFFFF;
+    --off-white: #FAFAF8;
+    --cream: #F5F3EE;
+    --gray-200: #E5E7EB;
+    --gray-300: #D1D5DB;
+    --gray-500: #6B7280;
+    --gray-600: #4B5563;
+    --gray-700: #374151;
+    --gray-800: #1F2937;
+    --green: #2E7D4F;
+    --radius: 4px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Roboto', system-ui, -apple-system, sans-serif;
+    color: var(--gray-800);
+    line-height: 1.7;
+    background: var(--off-white);
+    font-weight: 300;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 24px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+  }
+
+  /* Header */
+  .header {
+    background: var(--black);
+    color: var(--white);
+    padding: 28px 36px;
+    border-radius: var(--radius);
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .header h1 { color: var(--white); font-size: 22px; margin-bottom: 4px; }
+  .header .subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--gold-light);
+    font-weight: 600;
+  }
+  .header .badge {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--gray-500);
+    border: 1px solid var(--gray-500);
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+
+  /* Sections */
+  .panel {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 28px;
+    margin-bottom: 24px;
+  }
+  .panel-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  /* Form */
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .form-group { display: flex; flex-direction: column; }
+  .form-group.full { grid-column: 1 / -1; }
+  label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gray-500);
+    margin-bottom: 6px;
+  }
+  input[type="text"], textarea, select {
+    padding: 10px 14px;
+    border: 1px solid var(--gray-300);
+    border-radius: var(--radius);
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    color: var(--gray-800);
+    background: var(--white);
+  }
+  input[type="text"]:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--gold);
+  }
+  textarea { resize: vertical; min-height: 70px; }
+
+  /* Buttons */
+  .btn {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    transition: opacity 0.3s;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn-gold { background: var(--gold); color: var(--white); }
+  .btn-dark { background: var(--black); color: var(--white); }
+  .btn-outline {
+    background: transparent;
+    color: var(--gray-700);
+    border: 1px solid var(--gray-300);
+  }
+  .btn-green { background: var(--green); color: var(--white); }
+
+  .controls {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  /* Letter output */
+  .letter-output {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 56px 64px;
+    margin-bottom: 24px;
+    min-height: 400px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--gray-800);
+    page-break-inside: avoid;
+  }
+  .letter-output[contenteditable="true"]:focus {
+    outline: 1px solid var(--gold);
+    outline-offset: 4px;
+  }
+  .letter-output .placeholder-msg {
+    color: var(--gray-500);
+    font-style: italic;
+    text-align: center;
+    padding: 80px 20px;
+  }
+  .letter-output .return-block {
+    margin-bottom: 24px;
+    font-size: 14px;
+    color: var(--gray-700);
+  }
+  .letter-output .date-line {
+    margin-bottom: 24px;
+    font-size: 14px;
+  }
+  .letter-output .recipient-block {
+    margin-bottom: 24px;
+    font-size: 14px;
+  }
+  .letter-output .greeting {
+    margin-bottom: 16px;
+  }
+  .letter-output .body p {
+    margin-bottom: 16px;
+  }
+  .letter-output .signoff { margin-top: 32px; }
+  .letter-output .signature {
+    margin-top: 16px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    color: var(--black);
+  }
+
+  /* Toast */
+  .toast {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    background: var(--green);
+    color: var(--white);
+    padding: 14px 24px;
+    border-radius: var(--radius);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+    opacity: 0;
+    transform: translateY(-12px);
+    transition: opacity 0.3s, transform 0.3s;
+    pointer-events: none;
+    z-index: 1000;
+  }
+  .toast.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .helper-text {
+    font-size: 13px;
+    color: var(--gray-500);
+    margin-top: 8px;
+    font-style: italic;
+  }
+
+  .footer-note {
+    text-align: center;
+    color: var(--gray-500);
+    font-size: 12px;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 0.05em;
+    padding: 16px 0;
+  }
+
+  @media print {
+    body { padding: 0; max-width: 100%; background: white; }
+    .header, .panel:not(.print-area), .controls, .helper-text, .footer-note, .toast {
+      display: none !important;
+    }
+    .letter-output {
+      border: none;
+      padding: 0;
+      background: white;
+      page-break-inside: avoid;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div>
+    <h1>Outreach Letter Generator</h1>
+    <div class="subtitle">Fenner Flips · Internal Tool</div>
+  </div>
+  <span class="badge">Internal Use</span>
+</div>
+
+<!-- INPUT PANEL -->
+<div class="panel">
+  <div class="panel-title">Property &amp; Owner Details</div>
+  <div class="form-grid">
+    <div class="form-group">
+      <label for="ownerName">Owner Name</label>
+      <input type="text" id="ownerName" placeholder="e.g. Sarah Johnson">
+    </div>
+    <div class="form-group">
+      <label for="propertyAddress">Property Address</label>
+      <input type="text" id="propertyAddress" placeholder="e.g. 1234 Belmont Blvd, Nashville, TN 37212">
+    </div>
+    <div class="form-group">
+      <label for="ownerAddress">Mailing Address (if different)</label>
+      <input type="text" id="ownerAddress" placeholder="Where the letter should be mailed">
+    </div>
+    <div class="form-group">
+      <label for="neighborhood">Neighborhood / Area</label>
+      <input type="text" id="neighborhood" placeholder="e.g. Belmont, 12 South, East Nashville">
+    </div>
+    <div class="form-group full">
+      <label for="situationNotes">Situation Notes (private — for context only)</label>
+      <textarea id="situationNotes" placeholder="e.g. Vacant for ~6 months, weeds tall, mail piling up. Or: Listed with Compass Mar–Aug 2025, expired."></textarea>
+    </div>
+    <div class="form-group">
+      <label for="letterType">Letter Type</label>
+      <select id="letterType">
+        <option value="dfd">Driving for Dollars (vacant / distressed)</option>
+        <option value="probate">Probate (inherited property)</option>
+        <option value="expired">Expired Listing</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="variation">Variation</label>
+      <select id="variation">
+        <option value="0">Auto (random)</option>
+        <option value="1">Variation 1</option>
+        <option value="2">Variation 2</option>
+        <option value="3">Variation 3</option>
+      </select>
+      <span class="helper-text">Use different variations across batches so houses don't get identical letters.</span>
+    </div>
+  </div>
+  <div class="controls" style="margin-top: 24px;">
+    <button class="btn btn-gold" onclick="generateLetter()">Generate Letter</button>
+    <button class="btn btn-outline" onclick="clearForm()">Clear</button>
+  </div>
+</div>
+
+<!-- OUTPUT PANEL -->
+<div class="panel print-area">
+  <div class="panel-title">Letter Output</div>
+  <div class="controls">
+    <button class="btn btn-green" onclick="copyLetter()">Copy to Clipboard</button>
+    <button class="btn btn-dark" onclick="window.print()">Print / Save as PDF</button>
+    <button class="btn btn-outline" onclick="regenerate()">Regenerate (different variation)</button>
+  </div>
+  <div class="letter-output" id="letterOutput" contenteditable="true">
+    <div class="placeholder-msg">Fill in the details above and click <strong>Generate Letter</strong>. The output is editable — you can tweak any line before copying or printing.</div>
+  </div>
+  <p class="helper-text">Edits aren't saved on refresh. Copy to clipboard or print before navigating away.</p>
+</div>
+
+<div class="footer-note">
+  Fenner Flips · Internal Tool · 615-307-7977
+</div>
+
+<div class="toast" id="toast">Copied to clipboard</div>
+
+<script>
+  const RETURN_BLOCK = `Charlie &amp; Erin Fenner<br>Fenner Flips<br>Nashville, TN<br>615-307-7977`;
+  const SIGNATURE = `Charlie Fenner<br>Charlie &amp; Erin Fenner — Fenner Flips<br>615-307-7977 · charlie@fennerflips.com`;
+
+  // Letter templates — 3 variations per type
+  const TEMPLATES = {
+    dfd: [
+      // Variation 1 — neighbor-noticed angle
+      {
+        greeting: (n) => `Hi ${n || 'there'},`,
+        body: (d) => [
+          `My name is Charlie Fenner. My wife Erin and I live in Nashville and we buy houses in ${d.neighborhood || 'this part of town'} that need some work.`,
+          `I drove past ${d.propertyAddress || 'your property'} the other day and noticed it looked like it might be sitting empty (or close to it). I figured I'd send you a quick note instead of just driving on.`,
+          `If you've been wondering whether to fix it up, rent it, or just be done with it — we'd be happy to take a look and put a fair, written offer on the table. No repairs needed on your end. No agent fees. We close on your timeline, in cash.`,
+          `If now's not the right time, no worries at all. Hold onto this letter and call when it is.`
+        ],
+        signoff: `Take care,`
+      },
+      // Variation 2 — direct, problem-led
+      {
+        greeting: (n) => `${n ? 'Dear ' + n : 'Hello'},`,
+        body: (d) => [
+          `I'm Charlie Fenner — a Nashville real estate investor based right here in town. My wife Erin grew up here. We've spent the last 18+ years buying houses in ${d.neighborhood || 'neighborhoods like yours'}, fixing them up, and putting them back on the market.`,
+          `I'm writing because the property at ${d.propertyAddress || 'your address'} looks like it might be more house than you want to deal with right now. That's not a judgment — it's just a thing we see often.`,
+          `If you'd like to know what a fair, no-obligation, written offer looks like, we'll come out, walk it, and have a number to you within 24 hours. We pay all closing costs. No repairs. No agent commissions.`,
+          `If you'd rather just toss this letter in the recycling, that's fine too. No follow-up calls, no harassment.`
+        ],
+        signoff: `Best regards,`
+      },
+      // Variation 3 — short and warm
+      {
+        greeting: (n) => `Hi ${n || 'there'},`,
+        body: (d) => [
+          `Quick note from Charlie and Erin Fenner — we're a husband-and-wife team in Nashville who buy houses that need work.`,
+          `${d.propertyAddress || 'Your house'} caught my eye, so I wanted to reach out directly instead of just leaving it alone. If selling has ever crossed your mind — even casually — we'd love the chance to give you a fair offer.`,
+          `No repairs. No fees. No pressure. We close fast, on your schedule, and pay cash.`,
+          `Even if you're not ready, hang onto this letter. Plenty of folks call us six months or a year later when the timing's right.`
+        ],
+        signoff: `Warmly,`
+      }
+    ],
+
+    probate: [
+      // Variation 1 — empathetic, slow opener
+      {
+        greeting: (n) => `${n ? 'Dear ' + n : 'Hello'},`,
+        body: (d) => [
+          `First — I'm sorry for your loss. Settling an estate is one of the harder things a person can be asked to do, and a house in the middle of it doesn't make it easier.`,
+          `My name is Charlie Fenner. My wife Erin and I have been buying houses in Nashville since 2008 — over $20 million in projects. We work with families navigating probate fairly often. I wanted to reach out about ${d.propertyAddress || 'the property'} in case selling it directly would make this part of things simpler.`,
+          `What we offer: a fair, written, no-obligation cash offer within 24 hours. No repairs needed — we buy as-is, exactly the way the house sits. We pay all closing costs. We can close on whatever timeline works for the estate (we've waited 90+ days while paperwork worked through court before).`,
+          `If you'd like to talk it through, you can reach me on my cell at 615-307-7977. If now isn't the right time, please accept my condolences and ignore this letter — I won't follow up.`
+        ],
+        signoff: `With sympathy,`
+      },
+      // Variation 2 — practical / out-of-state focused
+      {
+        greeting: (n) => `Hi ${n || 'there'},`,
+        body: (d) => [
+          `My name is Charlie Fenner. I'm a Nashville-based real estate investor and I'm writing because public records show ${d.propertyAddress || 'a property here in Nashville'} may have transferred recently through an estate.`,
+          `If you live out of state — or even just on the other side of town — managing a Nashville property remotely is a real headache. Property taxes keep coming. Lawn service. Possible squatters. The water heater always picks the worst week to fail.`,
+          `If selling it directly would simplify your life, my wife Erin and I would be glad to give you a fair, written offer at no cost or obligation. We buy as-is (no cleanup, no repairs), pay all closing costs, and close on your timeline.`,
+          `If you're already working with an agent or have other plans, ignore this and accept my condolences. If the situation is messier than that, give me a call. I'll work around your schedule and the estate's.`
+        ],
+        signoff: `Respectfully,`
+      },
+      // Variation 3 — simple and quiet
+      {
+        greeting: (n) => `${n ? 'Dear ' + n : 'Hello'},`,
+        body: (d) => [
+          `Please accept my condolences if you're sorting through the loss of a family member. This kind of letter is hard to time well — I apologize if it arrives at the wrong moment.`,
+          `I'm Charlie Fenner — a husband-and-wife real estate investor team in Nashville along with my wife Erin. We buy inherited properties from families who'd rather not deal with cleaning, listing, or fixing up the house.`,
+          `If selling ${d.propertyAddress || 'the home'} is something the family is considering, we'd be happy to provide a fair written offer with no obligation. We work on your timeline — 14 days, 60 days, or whenever the paperwork is sorted.`,
+          `No repairs. No fees. No pressure. If now isn't the right time, hold onto this letter. We're not going anywhere.`
+        ],
+        signoff: `With care,`
+      }
+    ],
+
+    expired: [
+      // Variation 1 — direct, "what went wrong"
+      {
+        greeting: (n) => `Hi ${n || 'there'},`,
+        body: (d) => [
+          `I noticed the listing for ${d.propertyAddress || 'your house'} expired without selling. That's frustrating after months of showings, photos, and back-and-forth — and I'm sure it wasn't the outcome you wanted.`,
+          `My name is Charlie Fenner. My wife Erin and I are Nashville-based real estate investors. We've completed over $20M in projects right here in town. We're not agents — we're direct cash buyers. If your house didn't sell on the open market, there's a good chance the issue was repairs, condition, or buyer financing falling through. Those are exactly the situations we solve.`,
+          `Here's what we'd offer: a fair written offer in 24 hours, as-is (no repairs), no agent commissions, no closing costs on your end, and a closing date you pick. We close in cash with no financing contingency — meaning we don't fall out at the last minute.`,
+          `If you're done with showings and just want a clean exit, hit me back. If you're going to re-list with another agent, I get it — best of luck, and I won't follow up.`
+        ],
+        signoff: `Cheers,`
+      },
+      // Variation 2 — "another option" framing
+      {
+        greeting: (n) => `${n ? 'Hi ' + n : 'Hello'},`,
+        body: (d) => [
+          `Quick note: I saw the MLS listing for ${d.propertyAddress || 'your home'} came off the market without a sale.`,
+          `That happens for a lot of reasons — sometimes pricing, sometimes condition, sometimes a buyer's loan fell through at the last minute. Whatever the reason, you've got options most homeowners don't realize.`,
+          `I'm Charlie Fenner — a Nashville real estate investor and a husband-and-wife operation along with my wife Erin. We buy houses directly, in cash, no agents or financing involved. If you'd like a fair written offer with no obligation, I can have one to you within 24 hours of walking the property.`,
+          `What we don't do: pressure, lowball stunts, or wasting your time. We've been at this nearly two decades and we live in this city. Our reputation matters more than any one deal.`,
+          `If the answer is "not interested" — totally fine, ignore this letter. If you're curious what a real cash offer looks like, you know where to find me.`
+        ],
+        signoff: `Talk soon,`
+      },
+      // Variation 3 — short, blunt, respectful
+      {
+        greeting: (n) => `Hi ${n || 'there'},`,
+        body: (d) => [
+          `I noticed your listing on ${d.propertyAddress || 'the property'} expired. Sorry it didn't go the way you hoped.`,
+          `If you're tired of showings and just want to be done — no agent, no repairs, no waiting — my wife Erin and I would be happy to make you a fair, written, no-obligation cash offer.`,
+          `We're a husband-and-wife operation here in Nashville. $20M+ in projects since 2008. We close fast and pay all closing costs.`,
+          `If you're going to re-list, no problem at all. Best of luck. If you want a different option on the table, give me a call: 615-307-7977.`
+        ],
+        signoff: `Take care,`
+      }
+    ]
+  };
+
+  function todayLong() {
+    const d = new Date();
+    return d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+  }
+
+  function generateLetter() {
+    const ownerName = document.getElementById('ownerName').value.trim();
+    const propertyAddress = document.getElementById('propertyAddress').value.trim();
+    const ownerAddress = document.getElementById('ownerAddress').value.trim();
+    const neighborhood = document.getElementById('neighborhood').value.trim();
+    const letterType = document.getElementById('letterType').value;
+    const variationChoice = document.getElementById('variation').value;
+
+    const variations = TEMPLATES[letterType];
+    let pickedIdx;
+    if (variationChoice === '0') {
+      pickedIdx = Math.floor(Math.random() * variations.length);
+    } else {
+      pickedIdx = Math.min(parseInt(variationChoice, 10) - 1, variations.length - 1);
+    }
+    const v = variations[pickedIdx];
+
+    const data = { ownerName, propertyAddress, ownerAddress, neighborhood };
+    const greeting = v.greeting(ownerName);
+    const bodyParas = v.body(data);
+    const signoff = v.signoff;
+
+    const recipientLines = [];
+    if (ownerName) recipientLines.push(ownerName);
+    if (ownerAddress) {
+      ownerAddress.split(',').forEach(line => recipientLines.push(line.trim()));
+    }
+    const recipientHtml = recipientLines.length
+      ? recipientLines.map(escapeHtml).join('<br>')
+      : '<em style="color:#9CA3AF;">[Recipient address goes here]</em>';
+
+    const html = `
+      <div class="return-block">${RETURN_BLOCK}</div>
+      <div class="date-line">${todayLong()}</div>
+      <div class="recipient-block">${recipientHtml}</div>
+      <div class="greeting">${escapeHtml(greeting)}</div>
+      <div class="body">
+        ${bodyParas.map(p => `<p>${escapeHtml(p)}</p>`).join('')}
+      </div>
+      <div class="signoff">${escapeHtml(signoff)}</div>
+      <div class="signature">${SIGNATURE}</div>
+      <div style="margin-top: 24px; padding-top: 14px; border-top: 1px dashed #E5E7EB; font-size: 12px; color: #9CA3AF;">
+        Variation ${pickedIdx + 1} · Generated ${todayLong()}
+      </div>
+    `;
+
+    document.getElementById('letterOutput').innerHTML = html;
+    document.getElementById('letterOutput').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function regenerate() {
+    const variationSelect = document.getElementById('variation');
+    if (variationSelect.value !== '0') {
+      variationSelect.value = '0';
+    }
+    generateLetter();
+  }
+
+  function clearForm() {
+    ['ownerName','propertyAddress','ownerAddress','neighborhood','situationNotes'].forEach(id => {
+      document.getElementById(id).value = '';
+    });
+    document.getElementById('letterType').value = 'dfd';
+    document.getElementById('variation').value = '0';
+    document.getElementById('letterOutput').innerHTML = '<div class="placeholder-msg">Fill in the details above and click <strong>Generate Letter</strong>. The output is editable — you can tweak any line before copying or printing.</div>';
+  }
+
+  function copyLetter() {
+    const output = document.getElementById('letterOutput');
+    const text = output.innerText.trim();
+    if (!text || text.startsWith('Fill in the details')) {
+      showToast('Generate a letter first', false);
+      return;
+    }
+    navigator.clipboard.writeText(text).then(() => {
+      showToast('Copied to clipboard');
+    }).catch(() => {
+      const range = document.createRange();
+      range.selectNodeContents(output);
+      const sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+      try { document.execCommand('copy'); showToast('Copied to clipboard'); }
+      catch (e) { showToast('Copy failed — select and copy manually', false); }
+      sel.removeAllRanges();
+    });
+  }
+
+  function showToast(msg, success = true) {
+    const toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.style.background = success ? '#2E7D4F' : '#C0392B';
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2400);
+  }
+
+  function escapeHtml(s) {
+    if (!s) return '';
+    return String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+  }
+</script>
+
+</body>
+</html>

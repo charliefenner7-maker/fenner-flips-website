@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /tools/
+Disallow: /sell-guide.html
+Disallow: /sell-guide-thank-you.html
 
 Sitemap: https://www.fennerflips.com/sitemap.xml
