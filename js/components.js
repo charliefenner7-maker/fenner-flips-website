@@ -44,6 +44,15 @@ function getFooter() {
           </ul>
         </div>
         <div>
+          <h4>Areas We Serve</h4>
+          <ul class="footer-links">
+            <li><a href="sell-nashville.html">Sell My House Nashville</a></li>
+            <li><a href="sell-madison.html">Sell My House Madison</a></li>
+            <li><a href="sell-brentwood.html">Sell My House Brentwood</a></li>
+            <li><a href="sell-franklin.html">Sell My House Franklin</a></li>
+          </ul>
+        </div>
+        <div>
           <h4>Contact</h4>
           <ul class="footer-links">
             <li><a href="mailto:info@fennerflips.com">info@fennerflips.com</a></li>
